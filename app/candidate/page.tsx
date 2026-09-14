@@ -1,0 +1,37 @@
+'use client';
+import {useEffect,useMemo,useState} from 'react';
+import Link from 'next/link';
+import {FileText,MapPin,UserRound,TrendingUp,CheckCircle2,Clock3,ArrowRight,Edit3,Mail,BriefcaseBusiness,RefreshCw,ExternalLink} from 'lucide-react';
+
+const stages=['APPLIED','SCREENING','SHORTLISTED','INTERVIEW','OFFERED','HIRED'];
+const label=(x:string)=>x.replaceAll('_',' ').toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());
+
+export default function Candidate(){
+ const [p,setP]=useState<any>(null),[loading,setLoading]=useState(true),[error,setError]=useState('');
+ const load=async()=>{setLoading(true);setError('');try{const r=await fetch('/api/profile',{cache:'no-store'});const d=await r.json();if(!r.ok)throw new Error(d.error||'Unable to load career data');setP(d)}catch(e:any){setError(e.message||'Unable to load career data.')}finally{setLoading(false)}};
+ useEffect(()=>{load()},[]);
+ const stats=useMemo(()=>p?{applications:p.applications?.length||0,inProgress:(p.applications||[]).filter((a:any)=>!['REJECTED','HIRED'].includes(a.status)).length,selected:(p.applications||[]).filter((a:any)=>['OFFERED','HIRED'].includes(a.status)).length}:null,[p]);
+ if(loading)return <main className="mx-auto max-w-7xl px-5 py-20"><div className="mx-auto max-w-xl text-center"><div className="mx-auto grid h-14 w-14 animate-pulse place-items-center rounded-2xl bg-green-400/10 text-green-300"><BriefcaseBusiness/></div><h1 className="mt-5 text-2xl font-black">Loading your career workspace…</h1><p className="mt-2 text-sm text-zinc-500">Connecting to your profile and applications.</p></div></main>;
+ if(error)return <main className="mx-auto max-w-2xl px-5 py-20 text-center"><div className="glass rounded-3xl p-8"><h1 className="text-2xl font-black">My Career is temporarily unavailable</h1><p className="mt-3 text-sm leading-6 text-zinc-500">{error}</p><button onClick={load} className="mt-6 rounded-xl bg-green-400 px-5 py-3 text-sm font-black text-black"><RefreshCw size={15} className="mr-2 inline"/>Try again</button></div></main>;
+ if(!p)return null;
+ return <main className="mx-auto max-w-7xl px-5 py-9 md:py-12">
+  <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="text-xs font-bold uppercase tracking-[.2em] text-green-300">Candidate workspace</p><h1 className="mt-3 text-4xl font-black tracking-tight md:text-5xl">My <span className="gradient-text">career.</span></h1><p className="mt-3 text-zinc-500">A clear view of your profile, applications and next career move.</p></div><div className="flex gap-2"><Link href="/jobs" className="rounded-xl border border-white/10 px-4 py-2.5 text-sm font-bold hover:bg-white/[.04]">Find jobs</Link><Link href="/profile" className="rounded-xl bg-green-400 px-4 py-2.5 text-sm font-black text-black"><Edit3 size={15} className="mr-1.5 inline"/>Edit profile</Link></div></div>
+  <div className="mt-8 grid gap-4 md:grid-cols-3">
+   {[['Applications',stats!.applications,TrendingUp,'Total roles you applied to'],['In progress',stats!.inProgress,Clock3,'Applications still moving'],['Selected',stats!.selected,CheckCircle2,'Offers or successful outcomes']].map(([t,n,I,d]:any)=><div className="glass rounded-2xl p-5" key={t}><div className="flex items-center justify-between"><I size={18} className="text-green-300"/><span className="text-xs text-zinc-600">LIVE</span></div><p className="mt-5 text-3xl font-black">{n}</p><p className="mt-1 text-sm font-bold">{t}</p><p className="mt-1 text-xs text-zinc-500">{d}</p></div>)}
+  </div>
+  <div className="mt-7 grid gap-6 lg:grid-cols-[330px_1fr]">
+   <aside className="glass h-fit rounded-3xl p-6">
+    <div className="flex items-start justify-between"><div className="grid h-16 w-16 place-items-center rounded-2xl bg-green-400 text-xl font-black text-black">{p.name.slice(0,2).toUpperCase()}</div><Link href="/profile" className="rounded-lg border border-white/10 p-2 text-zinc-400 hover:text-white"><Edit3 size={15}/></Link></div>
+    <h2 className="mt-5 text-2xl font-black">{p.name}</h2><p className="mt-1 font-medium text-green-300">{p.headline||'Add a professional headline'}</p>
+    <div className="mt-4 space-y-2 text-sm text-zinc-500"><p><MapPin size={14} className="mr-2 inline"/>{p.location||'Add your location'}</p><p><Mail size={14} className="mr-2 inline"/>{p.email}</p></div>
+    <div className="mt-6 rounded-2xl border border-white/[.07] bg-white/[.025] p-4"><div className="flex justify-between text-xs"><span className="text-zinc-500">Profile strength</span><b className="text-green-300">85%</b></div><div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/10"><div className="h-full w-[85%] rounded-full bg-green-400"/></div><p className="mt-2 text-xs text-zinc-600">Add a resume and more skills to reach 100%.</p></div>
+    <div className="mt-6"><div className="flex items-center justify-between"><h3 className="font-bold">Skills</h3><Link href="/profile" className="text-xs font-bold text-green-300">Edit</Link></div><div className="mt-3 flex flex-wrap gap-2">{(p.skills||[]).map((s:string)=><span key={s} className="rounded-lg border border-white/10 bg-white/[.025] px-2.5 py-1.5 text-xs">{s}</span>)}</div></div>
+    <Link href="/profile" className="mt-6 block rounded-xl border border-white/10 py-3 text-center text-sm font-bold hover:bg-white/[.04]"><FileText size={15} className="mr-2 inline"/>Manage resume & profile</Link>
+   </aside>
+   <section className="glass rounded-3xl p-6 md:p-7">
+    <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center"><div><h2 className="text-xl font-black">Application tracker</h2><p className="mt-1 text-sm text-zinc-500">Track every application without losing the next step.</p></div><span className="pill px-3 py-1.5 text-xs text-zinc-400">{p.applications.length} total</span></div>
+    {p.applications.length===0?<div className="mt-8 rounded-2xl border border-dashed border-white/10 p-10 text-center"><BriefcaseBusiness className="mx-auto text-zinc-600"/><h3 className="mt-4 font-bold">Your career board is ready</h3><p className="mt-2 text-sm text-zinc-500">Apply to your first role and it will appear here.</p><Link href="/jobs" className="mt-5 inline-block rounded-xl bg-green-400 px-5 py-3 text-sm font-black text-black">Explore jobs <ArrowRight className="ml-1 inline" size={15}/></Link></div>:<div className="mt-6 space-y-4">{p.applications.map((a:any)=>{const idx=Math.max(0,stages.indexOf(a.status));return <div key={a.id} className="rounded-2xl border border-white/[.07] bg-white/[.02] p-5"><div className="flex flex-col justify-between gap-3 md:flex-row"><div><div className="flex items-center gap-3"><div className="grid h-10 w-10 place-items-center rounded-xl bg-white/[.06] text-sm font-black">{a.job.company.slice(0,2).toUpperCase()}</div><div><h3 className="font-bold">{a.job.title}</h3><p className="text-xs text-zinc-500">{a.job.company} · {a.job.location}</p></div></div></div><span className="h-fit rounded-full bg-green-400/10 px-3 py-1 text-xs font-bold text-green-300">{label(a.status)}</span></div><div className="mt-5 flex gap-1.5">{stages.map((s,i)=><div key={s} title={label(s)} className={`h-1.5 flex-1 rounded-full ${i<=idx?'bg-green-400':'bg-white/10'}`}/>)}</div><div className="mt-3 flex flex-wrap justify-between gap-2 text-xs text-zinc-600"><span>Match score: <b className="text-zinc-300">{a.matchScore}%</b></span><span>Applied {new Date(a.appliedAt).toLocaleDateString('en-IN')}</span></div></div>})}</div>}
+   </section>
+  </div>
+ </main>
+}

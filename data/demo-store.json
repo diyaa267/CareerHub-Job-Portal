@@ -1,0 +1,337 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "CareerHub Recruiter",
+      "email": "recruiter@careerhub.demo",
+      "role": "RECRUITER",
+      "headline": "Talent Acquisition",
+      "location": "India",
+      "skills": [
+        "Recruiting",
+        "Hiring"
+      ],
+      "resumeUrl": null
+    },
+    {
+      "id": 2,
+      "name": "Demo Candidate",
+      "email": "candidate@careerhub.demo",
+      "role": "CANDIDATE",
+      "headline": "Software Developer",
+      "location": "Ahmedabad, India",
+      "skills": [
+        "Java",
+        "Python",
+        "SQL",
+        "JavaScript",
+        "React"
+      ],
+      "resumeUrl": null
+    },
+    {
+      "id": 3,
+      "name": "CareerHub Admin",
+      "email": "admin@careerhub.demo",
+      "role": "ADMIN",
+      "headline": "Platform Admin",
+      "location": "India",
+      "skills": [],
+      "resumeUrl": null
+    }
+  ],
+  "jobs": [
+    {
+      "id": 1,
+      "title": "Software Engineer",
+      "company": "Google",
+      "location": "Bengaluru, India",
+      "workMode": "HYBRID",
+      "employmentType": "FULL_TIME",
+      "salaryMin": 1800000,
+      "salaryMax": 3200000,
+      "currency": "INR",
+      "skills": [
+        "JavaScript",
+        "TypeScript",
+        "Python",
+        "DSA",
+        "React"
+      ],
+      "featured": true,
+      "description": "Build reliable products used by millions of people. Work with product and engineering teams to ship high-quality software.",
+      "requirements": [
+        "Strong programming fundamentals",
+        "DSA and problem solving",
+        "Experience with web technologies"
+      ],
+      "benefits": [
+        "Health insurance",
+        "Learning budget",
+        "Flexible work"
+      ],
+      "status": "OPEN",
+      "recruiterId": 1,
+      "createdAt": "2026-09-14T22:20:12.342Z",
+      "updatedAt": "2026-09-14T22:20:12.342Z",
+      "_count": {
+        "applications": 0
+      }
+    },
+    {
+      "id": 2,
+      "title": "Frontend Developer",
+      "company": "Razorpay",
+      "location": "Bengaluru, India",
+      "workMode": "HYBRID",
+      "employmentType": "FULL_TIME",
+      "salaryMin": 1000000,
+      "salaryMax": 1800000,
+      "currency": "INR",
+      "skills": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "CSS"
+      ],
+      "featured": true,
+      "description": "Create fast, accessible and polished financial product experiences.",
+      "requirements": [
+        "React and TypeScript",
+        "Strong CSS fundamentals",
+        "API integration experience"
+      ],
+      "benefits": [
+        "ESOP",
+        "Flexible hours",
+        "Wellness support"
+      ],
+      "status": "OPEN",
+      "recruiterId": 1,
+      "createdAt": "2026-09-14T22:20:12.342Z",
+      "updatedAt": "2026-09-14T22:20:12.342Z",
+      "_count": {
+        "applications": 0
+      }
+    },
+    {
+      "id": 3,
+      "title": "Python Developer Intern",
+      "company": "TechNova Labs",
+      "location": "Remote - India",
+      "workMode": "REMOTE",
+      "employmentType": "INTERNSHIP",
+      "salaryMin": 15000,
+      "salaryMax": 25000,
+      "currency": "INR",
+      "skills": [
+        "Python",
+        "Flask",
+        "SQL",
+        "Git"
+      ],
+      "featured": true,
+      "description": "Join a product engineering team and build real APIs, automations and internal tools.",
+      "requirements": [
+        "Python basics",
+        "SQL fundamentals",
+        "Git/GitHub"
+      ],
+      "benefits": [
+        "Remote",
+        "Certificate",
+        "PPO opportunity"
+      ],
+      "status": "OPEN",
+      "recruiterId": 1,
+      "createdAt": "2026-09-14T22:20:12.342Z",
+      "updatedAt": "2026-09-14T22:20:12.342Z",
+      "_count": {
+        "applications": 0
+      }
+    },
+    {
+      "id": 4,
+      "title": "AI/ML Engineer",
+      "company": "Microsoft",
+      "location": "Hyderabad, India",
+      "workMode": "HYBRID",
+      "employmentType": "FULL_TIME",
+      "salaryMin": 1800000,
+      "salaryMax": 3000000,
+      "currency": "INR",
+      "skills": [
+        "Python",
+        "Machine Learning",
+        "SQL",
+        "NLP"
+      ],
+      "featured": false,
+      "description": "Build applied ML systems and intelligent experiences with measurable customer impact.",
+      "requirements": [
+        "Python and ML",
+        "Statistics fundamentals",
+        "Model evaluation"
+      ],
+      "benefits": [
+        "Global teams",
+        "Learning programs",
+        "Health cover"
+      ],
+      "status": "OPEN",
+      "recruiterId": 1,
+      "createdAt": "2026-09-14T22:20:12.342Z",
+      "updatedAt": "2026-09-14T22:20:12.342Z",
+      "_count": {
+        "applications": 0
+      }
+    },
+    {
+      "id": 5,
+      "title": "Backend Developer",
+      "company": "Flipkart",
+      "location": "Bengaluru, India",
+      "workMode": "ONSITE",
+      "employmentType": "FULL_TIME",
+      "salaryMin": 1200000,
+      "salaryMax": 2200000,
+      "currency": "INR",
+      "skills": [
+        "Java",
+        "Node.js",
+        "PostgreSQL",
+        "REST API"
+      ],
+      "featured": false,
+      "description": "Design scalable backend services for high-volume commerce workflows.",
+      "requirements": [
+        "Backend development",
+        "Databases and APIs",
+        "System design basics"
+      ],
+      "benefits": [
+        "Employee discounts",
+        "Career growth",
+        "Insurance"
+      ],
+      "status": "OPEN",
+      "recruiterId": 1,
+      "createdAt": "2026-09-14T22:20:12.342Z",
+      "updatedAt": "2026-09-14T22:20:12.342Z",
+      "_count": {
+        "applications": 0
+      }
+    },
+    {
+      "id": 6,
+      "title": "Data Analyst",
+      "company": "Deloitte",
+      "location": "Ahmedabad, India",
+      "workMode": "HYBRID",
+      "employmentType": "FULL_TIME",
+      "salaryMin": 700000,
+      "salaryMax": 1200000,
+      "currency": "INR",
+      "skills": [
+        "SQL",
+        "Python",
+        "Power BI",
+        "Excel"
+      ],
+      "featured": false,
+      "description": "Turn business data into insights and dashboards that support better decisions.",
+      "requirements": [
+        "SQL",
+        "Data visualization",
+        "Analytical thinking"
+      ],
+      "benefits": [
+        "Hybrid work",
+        "Mentoring",
+        "Certification support"
+      ],
+      "status": "OPEN",
+      "recruiterId": 1,
+      "createdAt": "2026-09-14T22:20:12.342Z",
+      "updatedAt": "2026-09-14T22:20:12.342Z",
+      "_count": {
+        "applications": 0
+      }
+    },
+    {
+      "id": 7,
+      "title": "UI/UX Designer",
+      "company": "Zomato",
+      "location": "Gurugram, India",
+      "workMode": "HYBRID",
+      "employmentType": "FULL_TIME",
+      "salaryMin": 900000,
+      "salaryMax": 1600000,
+      "currency": "INR",
+      "skills": [
+        "Figma",
+        "UX Research",
+        "Prototyping"
+      ],
+      "featured": false,
+      "description": "Design simple, delightful experiences across consumer products.",
+      "requirements": [
+        "Figma",
+        "Portfolio",
+        "User-centered design"
+      ],
+      "benefits": [
+        "Creative culture",
+        "Flexible work",
+        "Learning budget"
+      ],
+      "status": "OPEN",
+      "recruiterId": 1,
+      "createdAt": "2026-09-14T22:20:12.342Z",
+      "updatedAt": "2026-09-14T22:20:12.342Z",
+      "_count": {
+        "applications": 0
+      }
+    },
+    {
+      "id": 8,
+      "title": "DevOps Engineer",
+      "company": "Infosys",
+      "location": "Pune, India",
+      "workMode": "ONSITE",
+      "employmentType": "FULL_TIME",
+      "salaryMin": 900000,
+      "salaryMax": 1500000,
+      "currency": "INR",
+      "skills": [
+        "AWS",
+        "Docker",
+        "CI/CD",
+        "Linux"
+      ],
+      "featured": false,
+      "description": "Improve delivery pipelines, reliability and cloud infrastructure.",
+      "requirements": [
+        "Linux",
+        "Cloud basics",
+        "CI/CD"
+      ],
+      "benefits": [
+        "Training",
+        "Insurance",
+        "Global projects"
+      ],
+      "status": "OPEN",
+      "recruiterId": 1,
+      "createdAt": "2026-09-14T22:20:12.342Z",
+      "updatedAt": "2026-09-14T22:20:12.342Z",
+      "_count": {
+        "applications": 0
+      }
+    }
+  ],
+  "applications": [],
+  "nextUserId": 4,
+  "nextJobId": 9,
+  "nextApplicationId": 1
+}

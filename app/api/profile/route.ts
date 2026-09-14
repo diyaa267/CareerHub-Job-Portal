@@ -1,0 +1,6 @@
+import { NextResponse } from 'next/server';
+import { getDb } from '../../../lib/db';
+import { candidateWithApplications, updateCandidate } from '../../../lib/store';
+export const dynamic='force-dynamic';
+export async function GET(){try{const db=getDb();const candidate=await db.user.findFirst({where:{role:'CANDIDATE'},include:{applications:{include:{job:true},orderBy:{appliedAt:'desc'}}}});if(!candidate)return NextResponse.json(candidateWithApplications());return NextResponse.json(candidate)}catch{return NextResponse.json(candidateWithApplications())}}
+export async function PATCH(req:Request){const b=await req.json();try{const db=getDb();const candidate=await db.user.findFirst({where:{role:'CANDIDATE'}});if(!candidate)return NextResponse.json({error:'Candidate profile not found'},{status:404});const skills=Array.isArray(b.skills)?b.skills.map((x:any)=>String(x).trim()).filter(Boolean):String(b.skills||'').split(',').map(x=>x.trim()).filter(Boolean);const updated=await db.user.update({where:{id:candidate.id},data:{name:String(b.name||candidate.name).trim(),headline:String(b.headline??'').trim(),location:String(b.location??'').trim(),skills,resumeUrl:b.resumeUrl?String(b.resumeUrl).trim():null}});return NextResponse.json(updated)}catch{return NextResponse.json(updateCandidate(b))}}

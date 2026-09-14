@@ -1,0 +1,10 @@
+generator client { provider = "prisma-client-js" }
+datasource db { provider = "postgresql" url = env("DATABASE_URL") }
+model User { id Int @id @default(autoincrement()) name String email String @unique role Role @default(CANDIDATE) headline String? location String? skills String[] @default([]) resumeUrl String? avatarUrl String? createdAt DateTime @default(now()) updatedAt DateTime @updatedAt jobs Job[] applications Application[] }
+model Job { id Int @id @default(autoincrement()) title String company String location String workMode WorkMode @default(ONSITE) employmentType EmploymentType @default(FULL_TIME) salaryMin Int? salaryMax Int? currency String @default("INR") description String requirements String[] benefits String[] skills String[] featured Boolean @default(false) status JobStatus @default(OPEN) recruiterId Int recruiter User @relation(fields:[recruiterId],references:[id]) applications Application[] createdAt DateTime @default(now()) updatedAt DateTime @updatedAt }
+model Application { id Int @id @default(autoincrement()) jobId Int candidateId Int status ApplicationStatus @default(APPLIED) coverLetter String? resumeUrl String? matchScore Int @default(0) recruiterNote String? appliedAt DateTime @default(now()) updatedAt DateTime @updatedAt job Job @relation(fields:[jobId],references:[id],onDelete:Cascade) candidate User @relation(fields:[candidateId],references:[id],onDelete:Cascade) @@unique([jobId,candidateId]) }
+enum Role { CANDIDATE RECRUITER ADMIN }
+enum WorkMode { REMOTE HYBRID ONSITE }
+enum EmploymentType { FULL_TIME PART_TIME CONTRACT INTERNSHIP }
+enum JobStatus { OPEN CLOSED DRAFT }
+enum ApplicationStatus { APPLIED SCREENING SHORTLISTED INTERVIEW OFFERED HIRED REJECTED }
