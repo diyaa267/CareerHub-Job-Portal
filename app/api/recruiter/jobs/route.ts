@@ -73,12 +73,6 @@ export async function POST(req: Request) {
           employmentType: b.employmentType || 'FULL_TIME',
           salary,
           description: String(b.description),
-          requirements: Array.isArray(b.requirements)
-            ? b.requirements
-            : [],
-          benefits: Array.isArray(b.benefits)
-            ? b.benefits
-            : [],
           skills: Array.isArray(b.skills)
             ? b.skills
             : [],
