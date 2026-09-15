@@ -58,8 +58,7 @@ export async function POST(req: Request) {
     }
 
     // Safely handle nullable skills
-    const jobSkills: string[] = job.skills ?? [];
-    const candidateSkills: string[] = candidate.skills ?? [];
+    const jobSkills: string[] = Array.isArray(job.skills) ? job.skills.map(String) : []; const candidateSkills: string[] = Array.isArray(candidate.skills) ? candidate.skills.map(String) : [];
 
     const overlap = jobSkills.filter((skill: string) =>
       candidateSkills.some(
@@ -127,3 +126,4 @@ export async function PATCH(req: Request) {
     return NextResponse.json(patchApplication(body));
   }
 }
+
