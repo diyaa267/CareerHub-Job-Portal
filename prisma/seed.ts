@@ -1,13 +1,151 @@
-import {PrismaClient,Role,WorkMode,EmploymentType} from '@prisma/client';
-const db=new PrismaClient();
-const jobs=[
-{title:'Software Engineer',company:'Google',location:'Bengaluru, India',workMode:WorkMode.HYBRID,employmentType:EmploymentType.FULL_TIME,salaryMin:1800000,salaryMax:3200000,skills:['JavaScript','TypeScript','Python','DSA','React'],featured:true,description:'Build reliable products used by millions of people. Work with product and engineering teams to ship high-quality software.',requirements:['Strong programming fundamentals','DSA and problem solving','Experience with web technologies'],benefits:['Health insurance','Learning budget','Flexible work'],},
-{title:'Frontend Developer',company:'Razorpay',location:'Bengaluru, India',workMode:WorkMode.HYBRID,employmentType:EmploymentType.FULL_TIME,salaryMin:1000000,salaryMax:1800000,skills:['React','Next.js','TypeScript','CSS'],featured:true,description:'Create fast, accessible and polished financial product experiences.',requirements:['React and TypeScript','Strong CSS fundamentals','API integration experience'],benefits:['ESOP','Flexible hours','Wellness support']},
-{title:'Python Developer Intern',company:'TechNova Labs',location:'Remote - India',workMode:WorkMode.REMOTE,employmentType:EmploymentType.INTERNSHIP,salaryMin:15000,salaryMax:25000,skills:['Python','Flask','SQL','Git'],featured:true,description:'Join a product engineering team and build real APIs, automations and internal tools.',requirements:['Python basics','SQL fundamentals','Git/GitHub'],benefits:['Remote','Certificate','PPO opportunity']},
-{title:'AI/ML Engineer',company:'Microsoft',location:'Hyderabad, India',workMode:WorkMode.HYBRID,employmentType:EmploymentType.FULL_TIME,salaryMin:1800000,salaryMax:3000000,skills:['Python','Machine Learning','SQL','NLP'],featured:false,description:'Build applied ML systems and intelligent experiences with measurable customer impact.',requirements:['Python and ML','Statistics fundamentals','Model evaluation'],benefits:['Global teams','Learning programs','Health cover']},
-{title:'Backend Developer',company:'Flipkart',location:'Bengaluru, India',workMode:WorkMode.ONSITE,employmentType:EmploymentType.FULL_TIME,salaryMin:1200000,salaryMax:2200000,skills:['Java','Node.js','PostgreSQL','REST API'],featured:false,description:'Design scalable backend services for high-volume commerce workflows.',requirements:['Backend development','Databases and APIs','System design basics'],benefits:['Employee discounts','Career growth','Insurance']},
-{title:'Data Analyst',company:'Deloitte',location:'Ahmedabad, India',workMode:WorkMode.HYBRID,employmentType:EmploymentType.FULL_TIME,salaryMin:700000,salaryMax:1200000,skills:['SQL','Python','Power BI','Excel'],featured:false,description:'Turn business data into insights and dashboards that support better decisions.',requirements:['SQL','Data visualization','Analytical thinking'],benefits:['Hybrid work','Mentoring','Certification support']},
-{title:'UI/UX Designer',company:'Zomato',location:'Gurugram, India',workMode:WorkMode.HYBRID,employmentType:EmploymentType.FULL_TIME,salaryMin:900000,salaryMax:1600000,skills:['Figma','UX Research','Prototyping'],featured:false,description:'Design simple, delightful experiences across consumer products.',requirements:['Figma','Portfolio','User-centered design'],benefits:['Creative culture','Flexible work','Learning budget']},
-{title:'DevOps Engineer',company:'Infosys',location:'Pune, India',workMode:WorkMode.ONSITE,employmentType:EmploymentType.FULL_TIME,salaryMin:900000,salaryMax:1500000,skills:['AWS','Docker','CI/CD','Linux'],featured:false,description:'Improve delivery pipelines, reliability and cloud infrastructure.',requirements:['Linux','Cloud basics','CI/CD'],benefits:['Training','Insurance','Global projects']}
+import { PrismaClient, Role, WorkMode, EmploymentType } from '@prisma/client';
+
+const db = new PrismaClient();
+
+const jobs = [
+  {
+    title: 'Software Engineer',
+    company: 'Google',
+    location: 'Bengaluru, India',
+    workMode: WorkMode.HYBRID,
+    employmentType: EmploymentType.FULL_TIME,
+    salary: '1800000-3200000',
+    skills: 'JavaScript,TypeScript,Python,DSA,React',
+    description:
+      'Build reliable products used by millions of people. Work with product and engineering teams to ship high-quality software.',
+  },
+  {
+    title: 'Frontend Developer',
+    company: 'Razorpay',
+    location: 'Bengaluru, India',
+    workMode: WorkMode.HYBRID,
+    employmentType: EmploymentType.FULL_TIME,
+    salary: '1000000-1800000',
+    skills: 'React,Next.js,TypeScript,CSS',
+    description:
+      'Create fast, accessible and polished financial product experiences.',
+  },
+  {
+    title: 'Python Developer Intern',
+    company: 'TechNova Labs',
+    location: 'Remote - India',
+    workMode: WorkMode.REMOTE,
+    employmentType: EmploymentType.INTERNSHIP,
+    salary: '15000-25000',
+    skills: 'Python,Flask,SQL,Git',
+    description:
+      'Join a product engineering team and build real APIs, automations and internal tools.',
+  },
+  {
+    title: 'AI/ML Engineer',
+    company: 'Microsoft',
+    location: 'Hyderabad, India',
+    workMode: WorkMode.HYBRID,
+    employmentType: EmploymentType.FULL_TIME,
+    salary: '1800000-3000000',
+    skills: 'Python,Machine Learning,SQL,NLP',
+    description:
+      'Build applied ML systems and intelligent experiences with measurable customer impact.',
+  },
+  {
+    title: 'Backend Developer',
+    company: 'Flipkart',
+    location: 'Bengaluru, India',
+    workMode: WorkMode.ONSITE,
+    employmentType: EmploymentType.FULL_TIME,
+    salary: '1200000-2200000',
+    skills: 'Java,Node.js,PostgreSQL,REST API',
+    description:
+      'Design scalable backend services for high-volume commerce workflows.',
+  },
+  {
+    title: 'Data Analyst',
+    company: 'Deloitte',
+    location: 'Ahmedabad, India',
+    workMode: WorkMode.HYBRID,
+    employmentType: EmploymentType.FULL_TIME,
+    salary: '700000-1200000',
+    skills: 'SQL,Python,Power BI,Excel',
+    description:
+      'Turn business data into insights and dashboards that support better decisions.',
+  },
+  {
+    title: 'UI/UX Designer',
+    company: 'Zomato',
+    location: 'Gurugram, India',
+    workMode: WorkMode.HYBRID,
+    employmentType: EmploymentType.FULL_TIME,
+    salary: '900000-1600000',
+    skills: 'Figma,UX Research,Prototyping',
+    description:
+      'Design simple, delightful experiences across consumer products.',
+  },
+  {
+    title: 'DevOps Engineer',
+    company: 'Infosys',
+    location: 'Pune, India',
+    workMode: WorkMode.ONSITE,
+    employmentType: EmploymentType.FULL_TIME,
+    salary: '900000-1500000',
+    skills: 'AWS,Docker,CI/CD,Linux',
+    description:
+      'Improve delivery pipelines, reliability and cloud infrastructure.',
+  },
 ];
-async function main(){await db.application.deleteMany();await db.job.deleteMany();await db.user.deleteMany();const recruiter=await db.user.create({data:{name:'CareerHub Recruiter',email:'recruiter@careerhub.demo',role:Role.RECRUITER,headline:'Talent Acquisition',location:'India',skills:['Recruiting','Hiring']}});await db.user.create({data:{name:'Demo Candidate',email:'candidate@careerhub.demo',role:Role.CANDIDATE,headline:'Software Developer',location:'Ahmedabad, India',skills:['Java','Python','SQL','JavaScript','React']}});await db.user.create({data:{name:'Admin',email:'admin@careerhub.demo',role:Role.ADMIN}});for(const j of jobs)await db.job.create({data:{...j,recruiterId:recruiter.id}})}main().finally(()=>db.$disconnect());
+
+async function main() {
+  await db.application.deleteMany();
+  await db.job.deleteMany();
+  await db.user.deleteMany();
+
+  const recruiter = await db.user.create({
+    data: {
+      name: 'CareerHub Recruiter',
+      email: 'recruiter@careerhub.demo',
+      role: Role.RECRUITER,
+      headline: 'Talent Acquisition',
+      location: 'India',
+      skills: 'Recruiting,Hiring',
+    },
+  });
+
+  await db.user.create({
+    data: {
+      name: 'Demo Candidate',
+      email: 'candidate@careerhub.demo',
+      role: Role.CANDIDATE,
+      headline: 'Software Developer',
+      location: 'Ahmedabad, India',
+      skills: 'Java,Python,SQL,JavaScript,React',
+    },
+  });
+
+  await db.user.create({
+    data: {
+      name: 'CareerHub Admin',
+      email: 'admin@careerhub.demo',
+      role: Role.ADMIN,
+      headline: 'Platform Admin',
+      location: 'India',
+      skills: '',
+    },
+  });
+
+  for (const job of jobs) {
+    await db.job.create({
+      data: {
+        ...job,
+        recruiterId: recruiter.id,
+      },
+    });
+  }
+}
+
+main()
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await db.$disconnect();
+  });
