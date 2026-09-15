@@ -21,7 +21,6 @@ export async function GET(req: Request) {
         ...(type !== 'ALL' ? { employmentType: type as any } : {}),
       },
       orderBy: [
-        { featured: 'desc' },
         { createdAt: 'desc' },
       ],
       include: {
@@ -53,3 +52,4 @@ export async function GET(req: Request) {
     return NextResponse.json(listJobs({ q, mode, type }));
   }
 }
+
